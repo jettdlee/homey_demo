@@ -7,11 +7,13 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @project_id = @comment.project.id
   end
 
   def create
     @comment = Comment.new(comment_params)
     @project = @comment.project
+    @project_id = @project.id
 
     respond_to do |format|
       if @comment.save
@@ -25,9 +27,12 @@ class CommentsController < ApplicationController
   end
 
   def update
+    @project = @comment.project
+    @project_id = @project.id
+
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: "Comment was successfully updated." }
+        format.html { redirect_to @project, notice: "Comment was successfully updated." }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit, status: :unprocessable_entity }

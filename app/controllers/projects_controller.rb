@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy ]
+  before_action :set_status, only: %i[ new edit create update ]
 
   def index
     @projects = Project.all
@@ -20,6 +21,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @statuses = Status.all
 
     respond_to do |format|
       if @project.save
@@ -56,6 +58,10 @@ class ProjectsController < ApplicationController
   private
     def set_project
       @project = Project.find(params[:id])
+    end
+
+    def set_status
+      @statuses = Status.all
     end
 
     def project_params

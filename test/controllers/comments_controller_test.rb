@@ -11,11 +11,12 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create comment" do
+    project = projects(:project_one)
     assert_difference("Comment.count") do
-      post comments_url, params: { comment: {} }
+      post comments_url, params: { comment: { message: "test", project_id: project.id } }
     end
 
-    assert_redirected_to comment_url(Comment.last)
+    assert_redirected_to project_url(project)
   end
 
   test "should get edit" do
@@ -24,8 +25,8 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update comment" do
-    patch comment_url(@comment), params: { comment: {} }
-    assert_redirected_to comment_url(@comment)
+    patch comment_url(@comment), params: { comment: { message: "new message"} }
+    assert_redirected_to project_url(@comment.project)
   end
 
   test "should destroy comment" do
