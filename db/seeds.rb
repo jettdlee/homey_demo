@@ -8,6 +8,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 #
-User.find_or_create_by(email: "user1@test.com", password: "password") 
-User.find_or_create_by(email: "user2@test.com", password: "password") 
-User.find_or_create_by(email: "user3@test.com", password: "password") 
+User.find_or_create_by(email: "user1@test.com") do |user|
+  user.password = "password"
+end
+
+open = Status.find_or_create_by(name: 'Open')
+Status.find_or_create_by(name: 'Closed')
+
+project = Project.find_or_create_by(name: "Project 1", status_id: open.id)
+Comment.find_or_create_by(message: "message", project_id: project.id)

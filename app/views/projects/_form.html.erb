@@ -15,9 +15,11 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
 
-
     <%= form.label :description %>
     <%= form.text_field :description %>
+
+    <%= form.label :status %>
+    <%= form.collection_select :status_id, @statuses, :id, :name %>
     <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

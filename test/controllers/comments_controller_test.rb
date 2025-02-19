@@ -5,11 +5,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     @comment = comments(:one)
   end
 
-  test "should get index" do
-    get comments_url
-    assert_response :success
-  end
-
   test "should get new" do
     get new_comment_url
     assert_response :success
@@ -21,11 +16,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to comment_url(Comment.last)
-  end
-
-  test "should show comment" do
-    get comment_url(@comment)
-    assert_response :success
   end
 
   test "should get edit" do

@@ -11,9 +11,11 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @statuses = Status.all
   end
 
   def edit
+    @statuses = Status.all
   end
 
   def create
@@ -57,6 +59,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :description)
+      params.require(:project).permit(:name, :description, :status_id)
     end
 end

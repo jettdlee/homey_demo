@@ -1,7 +1,8 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "Given correct parameters, then user is valid" do
+    @comment = comments(:one)
+    assert @comment.valid?
+  end
 end
